@@ -1,0 +1,169 @@
+#p-title{
+	width: 100%;
+	height: 50px;
+}
+#p-title h1{
+	margin-top: 10px;
+}
+
+#list-prods{
+	display: inline-block;
+	width: 80%;
+	height: auto;
+}
+
+#p-subt{
+	width: 100%;
+	height: 30px;
+	font: bold 16px arial;
+}
+
+.data{
+	width: 20%;
+	height: 100%;
+}
+
+.prods-row{
+	width: 100%;
+	height: 40px;
+}
+
+.data.pname{
+	width: 30%;
+}
+.data.pimg{
+	width: 30%;
+}
+.data.ppu{
+	width: 10%;
+}
+.data.pdisp{
+	width: 10%;
+}
+.data.pal{
+	width: 10%;
+}
+.opc{
+	width: 10%;
+}
+
+
+#add-block{
+	display: inline-block;
+	width: 80%;
+	height: 25px;
+}
+#add-btn{
+	width: 15%;
+	height: 100%;
+	float: right;
+	background-color: #1a1a1a;
+	border-radius: 10px;
+}
+#add-btn a{
+	text-decoration: none;
+	float: left;
+	color: #338ee3;
+	font: 15px arial;
+	width: 100%;
+	height: 21px;
+	padding-top: 4px;
+}
+#add-btn:hover{
+	background-color: #333333;
+}
+
+
+
+#form{
+	display: inline-block;
+	width: 40%;
+	height: auto;
+	margin-top: 50px;
+	border:1px solid #000;
+}
+form{
+	width: 100%;
+	border:1px solid gray;
+}
+
+.f{
+	width: 100%;
+}
+.f.head{
+	height: 40px;
+}
+.f.head h2{
+	margin-top: 15px;
+}
+.f.body{
+	display: inline-block;
+	height: 150px;
+	font: 14px arial;
+	border-top:1px solid gray;
+}
+
+
+.body .aa{
+	width: 100%;
+	height: 30px;
+}
+
+.fcat .label{
+	float: left;
+	width: 30%;
+	height: 100%;
+}
+.fname .label{
+	float: left;
+	width: 30%;
+	height: 100%;
+}
+.fimg .label{
+	float: left;
+	width: 20%;
+	height: 100%;
+}
+
+.aa label{
+	float: right;
+	margin-top: 5px;
+}
+.aa input{
+	margin: 5px 10px;
+}
+
+.body .bb{
+	float: left;
+	width: 32%;
+	height: 50px;
+	margin-left: 1%;
+}
+.bb .label{
+	float: left;
+	clear: right;
+	width: 100%;
+	height: 20px;
+	margin-bottom: 2px;
+}
+
+.bb label{
+	float: left;
+	margin-left: 30%;
+	margin-top: 5px;
+}
+
+.bb.fprice input{
+	width: 60px;
+}
+
+
+
+.f.foot{
+	height: 50px;
+}
+.f.foot input{
+	margin-top: 10px;
+	height: 30px;
+	width: 100px;
+}

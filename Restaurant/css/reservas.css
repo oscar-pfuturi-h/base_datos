@@ -1,0 +1,99 @@
+#form{
+	display: inline-block;
+	float: left;
+	width: 60%;
+	height: auto;
+	margin-top: 10px;
+	border:1px solid gray;
+}
+
+.title{
+	float: left;
+	width: 50%;
+	height: 40px;
+	text-align: center;
+}
+
+
+
+#btn-block{
+	display: inline-block;
+	float: left;
+	width: 50%;
+	height: 40px;
+	font: bold 15px arial; 
+}
+#btn{
+	width: 90%;
+	height: 40px;
+}
+#ver-lista{
+	width: 50%;
+	height: 30px;
+	margin-left: 10%;
+	margin-top: 5px;
+}
+.b {
+	width: 25%;
+	margin-top: 10px;
+}
+
+
+
+#categorias{
+	display: inline-block;
+	float: left;
+	width: 20%;
+	height: auto;
+	margin-left: 10%;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	border: 1px solid #000;
+}
+#h2{
+	width: 100%;
+	height: 30px;
+	padding-top: 10px;
+	background-color: #921919;
+}
+
+#menu{
+	display: inline-block;
+	width: 100%;
+	height: 120px;
+	border-bottom: 1px solid #000;
+	background-color: #921919;
+}
+#menu p{
+	float: left;
+	width: 100%;
+	height: 33%;
+	border-top: 1px solid #000;
+	font: 20px verdana;
+}
+#menu p a{
+	float: left;
+	width: 100%;
+	height: 80%;
+	text-decoration: none;
+	color: #fff;
+	padding-top: 3%;
+}
+#menu p a:hover{
+	color: #000;
+}
+
+
+#subt-prods{
+	width: 60%;
+	height: auto;
+}
+
+#subt-prods tr{
+	width: 100%;
+	height: 30px;
+	font: 15px arial;
+}
+#subt-prods th{
+	border: 1px solid #000;
+}

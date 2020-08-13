@@ -1,0 +1,126 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body, header, nav, aside, figure, section, footer{
+	display: block;
+	font: 12px arial;
+	text-align: center;
+}
+body{
+	background-color: #d0d0f2; 
+}
+
+#content {
+	width: 100%;
+	height: 100%;
+}
+
+nav{
+	display: inline-block;
+	float: left;
+	clear: right;
+	width: 100%;
+	height: 60px;
+	margin-bottom: 100px;
+	background-color: #1a1a1a;
+	border-bottom: 1px solid gray;
+}
+
+#info {
+	display: inline-block;
+	float: left;
+	width: 20%;
+	height: 100%;
+}
+#info span{
+	float: left;
+	width: 95%;
+	margin-left: 5%;
+	margin-bottom: 5px;
+	font: 12px arial;
+	color: gray;
+	text-align: left;
+}
+#name{
+	float: left;
+	width: 90%;
+	height: 100%;
+	margin: 0px 5%;
+	font: bold 20px arial;
+	color: #fff;
+}
+
+
+#mail{
+	float: left;
+	width: 50%;
+	height: 50px;
+}
+#shift{
+	float: left;
+	clear: right;
+	width: 50%;
+	height: 50px;
+}
+
+#buttons{
+	display: inline-block;
+	float: left;
+	width: 80%;
+	height: 60px;
+}
+.b{
+	float: left;
+	width: 10%;
+	height: 100%;
+}
+.look{
+	float: left;
+	width: 100%;
+	height: 40px;
+	padding-top: 20px;
+	text-decoration: none;
+	font: 15px arial;
+	color: #fff;
+	border-left: 1px solid gray;
+}
+.look.a{
+	border-right: 1px solid gray;
+}
+.look:hover{
+	background-color: #333333;
+}
+
+/* /////////cerrar sesion /////////////////// */
+#logout{
+	float: right;
+	clear: right;
+	width: 30%;
+	height: 100%;
+}
+#out{
+	float: left;
+	width: 100%;
+	height: 40px;
+	padding-top: 20px;
+	text-decoration: none;
+	font: 15px arial;
+	color: #fff;
+	border-left: 1px solid gray;
+}
+#out:hover{
+	background-color: #333333;
+}
+
+
+/* ///////////// elementos ///////////// */
+#lists{
+	display: inline-block;
+	float: right;
+	clear: right;
+	width: 90%;
+	margin-right: 5%;
+	height: auto;
+}

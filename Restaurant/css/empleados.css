@@ -1,0 +1,39 @@
+
+#list-emp{
+	width: 100%;
+	height: auto;
+}
+
+#e-subt{
+	font: 16px arial;
+}
+
+.emp-row{
+	width: 100%;
+	height: 40px;
+}
+
+.data.ename{
+	width: 20%;
+}
+.data.edni{
+	width: 8%;
+}
+.data.email{
+	width: 20%;
+}
+.data.etel{
+	width: 8%;
+}
+.data.efecha{
+	width: 10%;
+}
+.data.esal{
+	width: 7%;
+}
+.data.elocal{
+	width: 14%;
+}
+.data.eturno{
+	width: 6%;
+}

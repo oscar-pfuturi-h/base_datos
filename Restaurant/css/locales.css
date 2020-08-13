@@ -1,0 +1,36 @@
+#info{
+	display: inline-block;
+	width: 80%;
+	height: auto;
+	margin: 10px 10%;
+}
+
+.dir{
+	float: left;
+	width: 20%;
+	height: 180px;
+	margin-left: 10%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	border: 1px solid gray;
+	border-radius: 10%;
+	text-align: left;
+	font: 15px arial;
+	background-color: #fff;
+}
+
+h3,.dir span{
+	margin:2px 10px;
+}
+
+.dir p{
+	margin: 2px 15px;
+}
+
+.mapa{
+	float: left;
+	width: 50%;
+	height: 250px;
+	margin-bottom: 50px;
+	border: 1px solid gray;
+}

@@ -1,0 +1,76 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body, header, nav, aside, figure, section, footer{
+	display: block;
+	font: 12px arial;
+	text-align: center;
+}
+body{
+	background-color: #d0d0f2; 
+}
+
+#content {
+	width: 100%;
+	height: 100%;
+}
+
+table{
+	margin-bottom: 50px;
+	border-collapse: collapse;
+}
+
+td, th{
+	border:1px solid gray;
+}
+
+#c-table{
+	width: 40%;
+	margin-left: 30%;
+	margin-top: 50px;
+}
+#c-table tr{
+	width: 100%;
+	height: 40px;
+}
+
+.clt{
+	width: 20%;
+}
+.cld{
+	width: 50%;
+	font: 20px arial;
+	padding-left: 20%;
+}
+
+#r-table{
+	width: 60%;
+	margin-left: 20%;
+}
+
+#r-table th{
+	height: 40px;
+}
+#r-table tr{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.info{
+	width: 100%;
+	border:1px solid gray;
+}
+
+#prod{
+	display: inline-block;
+	margin-bottom: 0px;
+	float: right;
+	margin-left: 10%;
+}
+#prod .prod.name{
+	width: 20%;
+}
+

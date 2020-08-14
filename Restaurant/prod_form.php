@@ -58,7 +58,7 @@ if ($_REQUEST['tc']=='add'){
 					<label>Disponible:</label>
 				</div>
 				<div class="in">
-					<input type="radio" name="fds" id="fds" value="1" checked><span>Sí</span>
+					<input type="radio" name="fds" id="fds" value="1"><span>Sí</span>
 					<input type="radio" name="fdn" id="fdn" value="0"><span>No</span>
 				</div>
 			</div>
@@ -67,8 +67,8 @@ if ($_REQUEST['tc']=='add'){
 					<label>Alcohol:</label>
 				</div>
 				<div class="in">
-					<input type="radio" name="fds" id="fds" value="1"><span>Sí</span>
-					<input type="radio" name="fdn" id="fdn" value="0" checked><span>No</span>
+					<input type="radio" name="alcs" id="fds" value="1"><span>Sí</span>
+					<input type="radio" name="alcn" id="fdn" value="0"><span>No</span>
 				</div>
 			</div>
 		</div>
@@ -79,9 +79,13 @@ if ($_REQUEST['tc']=='add'){
 <?php 
 }
 if ($_REQUEST['tc']=='edit'){
+	$qry = "SELECT nombre, disponible, precio, imagen FROM productos
+			WHERE id_prod=".$_REQUEST['pid'].";";
+	$res = $db_connection->query($qry);
+	$row = $res->fetch_assoc();
 	if ($_REQUEST['cat']==0){
 ?>
-	<form method="POST" action="actualizar_prod.php?pcat=0">
+	<form method="POST" action="actualizar_prod.php?pid=<?php echo $_REQUEST['pid']; ?>">
 		<div class="f head">
 			<h2>Editar Producto</h2>
 		</div>
@@ -91,7 +95,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Categoría:</label>
 				</div>
 				<div class="in">
-					<input type="checkbox" name="fcp" id="fcp" value="platillos" checked><span>Platillo</span>
+					<input type="checkbox" name="fcp" id="fcp" value="platillos"><span>Platillo</span>
 					<input type="checkbox" name="fcpo" id="fcpo" value="postres"><span>Postre</span>
 					<input type="checkbox" name="fcb" id="fcb" value="bebidas"><span>Bebida</span>
 				</div>
@@ -101,7 +105,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Descripción:</label>
 				</div>
 				<div class="in">
-					<input type="text" name="fn" id="fn" required>
+					<input type="text" name="fn" id="fn" value="<?php echo $row['nombre']; ?>" required>
 				</div>
 			</div>
 			<div class="elem aa fimg">
@@ -109,7 +113,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Imagen:</label>
 				</div>
 				<div class="in">
-					<input type="file" name="fi" id="fi" required>
+					<input type="file" name="fi" id="fi" value="<?php echo $row['imagen']; ?>" required>
 				</div>
 			</div>
 			<div class="elem bb fprice">
@@ -117,7 +121,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Precio:</label>
 				</div>
 				<div class="in">
-					<input type="number" name="fp" id="fp" max="99" min="1" step="0.5" maxlength="2" required>
+					<input type="number" name="fp" id="fp" max="99" min="1" step="0.5" maxlength="2" value="<?php echo $row['precio']; ?>" required>
 				</div>
 			</div>
 			<div class="elem bb fdisp">
@@ -135,7 +139,7 @@ if ($_REQUEST['tc']=='edit'){
 	}
 	if ($_REQUEST['cat']==1){
 	?>
-	<form method="POST" action="actualizar_prod.php?pcat=1">
+	<form method="POST" action="actualizar_prod.php?pid=<?php echo $_REQUEST['pid']; ?>">
 		<div class="f head">
 			<h2>Editar Producto</h2>
 		</div>
@@ -155,7 +159,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Descripción:</label>
 				</div>
 				<div class="in">
-					<input type="text" name="fn" id="fn" required>
+					<input type="text" name="fn" id="fn" value="<?php echo $row['nombre']; ?>" required>
 				</div>
 			</div>
 			<div class="elem aa fimg">
@@ -163,7 +167,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Imagen:</label>
 				</div>
 				<div class="in">
-					<input type="file" name="fi" id="fi" required>
+					<input type="file" name="fi" id="fi" value="<?php echo $row['imagen']; ?>" required>
 				</div>
 			</div>
 			<div class="elem bb fprice">
@@ -171,7 +175,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Precio:</label>
 				</div>
 				<div class="in">
-					<input type="number" name="fp" id="fp" max="99" min="1" step="0.5" maxlength="2" required>
+					<input type="number" name="fp" id="fp" max="99" min="1" step="0.5" maxlength="2" value="<?php echo $row['precio']; ?>" required>
 				</div>
 			</div>
 			<div class="elem bb fdisp">
@@ -189,7 +193,7 @@ if ($_REQUEST['tc']=='edit'){
 	}
 	if ($_REQUEST['cat']==2){
 	?>
-	<form method="POST" action="actualizar_prod.php?pcat=2">
+	<form method="POST" action="actualizar_prod.php?pid=<?php echo $_REQUEST['pid']; ?>">
 		<div class="f head">
 			<h2>Editar Producto</h2>
 		</div>
@@ -209,7 +213,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Descripción:</label>
 				</div>
 				<div class="in">
-					<input type="text" name="fn" id="fn" required>
+					<input type="text" name="fn" id="fn" value="<?php echo $row['nombre']; ?>" required>
 				</div>
 			</div>
 			<div class="elem aa fimg">
@@ -217,7 +221,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Imagen:</label>
 				</div>
 				<div class="in">
-					<input type="file" name="fi" id="fi" required>
+					<input type="file" name="fi" id="fi" value="<?php echo $row['imagen']; ?>" required>
 				</div>
 			</div>
 			<div class="elem bb fprice">
@@ -225,7 +229,7 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Precio:</label>
 				</div>
 				<div class="in">
-					<input type="number" name="fp" id="fp" max="99" min="1" step="0.5" maxlength="2" required>
+					<input type="number" name="fp" id="fp" max="99" min="1" step="0.5" maxlength="2" value="<?php echo $row['precio']; ?>" required>
 				</div>
 			</div>
 			<div class="elem bb fdisp">
@@ -242,8 +246,8 @@ if ($_REQUEST['tc']=='edit'){
 					<label>Alcohol:</label>
 				</div>
 				<div class="in">
-					<input type="radio" name="fds" id="fds" value="1"><span>Sí</span>
-					<input type="radio" name="fdn" id="fdn" value="0"><span>No</span>
+					<input type="radio" name="alcs" id="alcs" value="1"><span>Sí</span>
+					<input type="radio" name="alcn" id="alcn" value="0"><span>No</span>
 				</div>
 			</div>
 		</div>

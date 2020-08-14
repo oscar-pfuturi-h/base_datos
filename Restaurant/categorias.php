@@ -26,7 +26,7 @@ if($_REQUEST['cod'] == 'plato'){
 		$cont++;*/
 ?>
 		<tr>
-			<td class='imagen'><figure><img src='<?php echo $imagen; ?>' alt='imagen postre'/></figure></td>
+			<td class='imagen'><figure><img src='<?php echo $imagen; ?>' alt='Imagen no disponible'/></figure></td>
 			<td class='descripcion' id="nombre"><?php echo $nombre; ?></td>
 			<td class='precio'>S/<?php echo $precio; ?></td>
 			<td class='cantidad'><input type='number' name='cantidad' id='cantidad' min='1' max='99' maxlength='2' value='1' style='width: 40px; margin-left: 20px';></td>
@@ -59,7 +59,7 @@ if ($_REQUEST['cod'] == 'postre'){
 		$cont++;*/
 		?>
 		<tr>
-			<td class='imagen'><figure><img src='<?php echo $imagen; ?>' alt='imagen postre'/></figure></td>
+			<td class='imagen'><figure><img src='<?php echo $imagen; ?>' alt='Imagen no disponible'/></figure></td>
 			<td class='descripcion' id="nombre"><?php echo $nombre; ?></td>
 			<td class='precio'>S/<?php echo $precio; ?></td>
 			<td class='cantidad'><input type='number' name='cantidad' id='cantidad' min='1' max='99' maxlength='2' value='1' style='width: 40px; margin-left: 20px';></td>
@@ -92,7 +92,7 @@ if ($_REQUEST['cod'] == 'bebida'){
 		$cont++;*/
 	?>
 		<tr>
-			<td class='imagen'><figure><img src='<?php echo $imagen; ?>' alt='imagen postre'/></figure></td>
+			<td class='imagen'><figure><img src='<?php echo $imagen; ?>' alt='Imagen no disponible'/></figure></td>
 			<td class='descripcion' id="nombre"><?php echo $nombre; if ($alcohol==1) echo " (alcohol)"; ?></td>
 			<td class='precio'>S/<?php echo $precio; ?></td>
 			<td class='cantidad'><input type='number' name='cantidad' id='cantidad' min='1' max='99' maxlength='2' value='1' style='width: 40px; margin-left: 20px';></td>

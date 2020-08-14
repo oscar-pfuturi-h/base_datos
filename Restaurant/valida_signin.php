@@ -13,7 +13,8 @@ if (isset($_POST['enviar'])) {
     //$query->bindParam("email", $email, PDO::PARAM_STR);
     //$rows = $res->fetch_assoc();
     if ($res->num_rows > 0) {
-        echo '<p class="error">La dirección de correo electrónico ya está registrada!</p>';
+        print "<script> alert('La dirección de correo electrónico ya está registrada!');
+                window.location.replace('registrarse.php'); </script>";
     }
 
     if ($res->num_rows == 0) {
@@ -21,9 +22,11 @@ if (isset($_POST['enviar'])) {
         $res1 = $db_connection->query($query);
  
         if ($res1) {
-            echo '<p class="success">Se ha registrado correctamente!</p>';
+            print "<script> alert('Se ha registrado correctamente!');
+                window.location.replace('index.php'); </script>";
         } else {
-            echo '<p class="error">Algo salió mal, vuelva a intentarlo!</p>';
+            print "<script> alert('Ha ocurrido un problema!');
+                window.location.replace('registrarse.php'); </script>";
         }
     }
 }

@@ -86,9 +86,9 @@ CREATE TABLE clientes (
 	id_cliente integer PRIMARY KEY AUTO_INCREMENT,
 	nombre varchar(30) NOT NULL,
 	apellidos varchar(30),
-	correo varchar(40) UNIQUE,
-	contrasenha varchar(40) UNIQUE
-)ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+	correo varchar(40),
+	contrasenha varchar(40)
+)ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
 PARTITION BY RANGE(id_cliente)(
 	PARTITION p_c1 VALUES less than (11),
   	PARTITION p_c2 VALUES less than (21),
@@ -105,7 +105,7 @@ CREATE TABLE reservaciones (
 	id_reserva integer PRIMARY KEY AUTO_INCREMENT,
 	id_cliente integer,
 	nro_clientes tinyint NOT NULL,
-	fecha_reservacion date NOT NULL,
+	fecha_reservacion date,
     fecha_reservada date NOT NULL,
 	hora time NOT NULL,
 	id_sucursal varchar(5) NOT NULL,
@@ -171,6 +171,8 @@ PARTITION BY RANGE(id_cliente)(
   	PARTITION p_rc2 VALUES less than (21),
  	PARTITION p_rc3 VALUES less than (31),
   	PARTITION p_rc4 VALUES less than (41));
+
+
 
 
 
@@ -274,54 +276,54 @@ INSERT INTO cajero VALUES
 (70399921,'anapr@gmail.com','pass5');
 
 INSERT INTO clientes VALUES 
-(101,'Kevin', 'Mamani Condori','kevmc@gmail.com','contra1'),
-(102,'Wilmer', 'Lopez Zegarra','willz@gmail.com','contra2'),
-(103,'Edwin', 'Choque Quispe','edwcq@gmail.com','contra3'),
-(104,'Diana', 'Medina Acosta','diama@gmail.com','contra4'),
-(105, 'Juan', 'De la torre', 'juadt@gmail.com','contra5'),
-(106, 'Antonio', 'Hernandez', 'anthe@gmail.com','contra6'),
-(107, 'Pedro', 'Juarez', 'pedju@gmail.com','contra7'),
-(108, 'Mireya', 'Perez', 'mirpe@gmail.com','contra8'),
-(109, 'Jose', 'Castillo','josca@gmail.com','contra9'),
-(110, 'Maria', 'Diaz', 'mardi@gmail.com','contra10'),
-(111, 'Clara', 'Duran', 'cladu@gmail.com','contra11'),
-(112, 'Joaquin', 'Muñoz', 'joamu@gmail', 'contra12'),
-(113, 'Julia', 'Lopez', 'jullo@gmail.com','contra13'),
-(114, 'Aina', 'Acosta','ainac@gmail.com','contra14'),
-(115, 'Carlota', 'Perez', 'carpe@gmail.com','contra15'),
-(116, 'Ana Maria', 'Igleias', 'anaig@gmail.com','contra16'),
-(117, 'Jaime', 'Jimenez', 'jaiji@gmail.com','contra17'),
-(118, 'Roberto ', 'Torres', 'robto@gmail.com','contra18'),
-(119, 'Juan', 'Cano', 'juaca@gmail.com','contra19'),
-(120, 'Santiago', 'Hernandez', 'sanhe@gmail.com','contra20'),
-(121, 'Berta', 'Gomez', 'bertg@gmail.com','contra21'),
-(122, 'Miriam', 'Dominguez', 'mirdo@gmail.com','contra22'),
-(123, 'Antonio', 'Castro', 'antca@gmail.com','contra23'),
-(124, 'Hugo', 'Alonso', 'hugal@gmail.com','contra24'),
-(125, 'Victoria', 'Perez', 'vicpe@gmail.com','contra25'),
-(126, 'Jimena', 'Leon', 'jimle@gmail.com','contra26'),
-(127, 'Raquel ', 'Peña','raqpe@gmail.com','contra27');
+(1,'Kevin', 'Mamani Condori','kevmc@gmail.com','contra1'),
+(2,'Wilmer', 'Lopez Zegarra','willz@gmail.com','contra2'),
+(3,'Edwin', 'Choque Quispe','edwcq@gmail.com','contra3'),
+(4,'Diana', 'Medina Acosta','diama@gmail.com','contra4'),
+(5, 'Juan', 'De la torre', 'juadt@gmail.com','contra5'),
+(6, 'Antonio', 'Hernandez', 'anthe@gmail.com','contra6'),
+(7, 'Pedro', 'Juarez', 'pedju@gmail.com','contra7'),
+(8, 'Mireya', 'Perez', 'mirpe@gmail.com','contra8'),
+(9, 'Jose', 'Castillo','josca@gmail.com','contra9'),
+(10, 'Maria', 'Diaz', 'mardi@gmail.com','contra10'),
+(11, 'Clara', 'Duran', 'cladu@gmail.com','contra11'),
+(12, 'Joaquin', 'Muñoz', 'joamu@gmail', 'contra12'),
+(13, 'Julia', 'Lopez', 'jullo@gmail.com','contra13'),
+(14, 'Aina', 'Acosta','ainac@gmail.com','contra14'),
+(15, 'Carlota', 'Perez', 'carpe@gmail.com','contra15'),
+(16, 'Ana Maria', 'Igleias', 'anaig@gmail.com','contra16'),
+(17, 'Jaime', 'Jimenez', 'jaiji@gmail.com','contra17'),
+(18, 'Roberto ', 'Torres', 'robto@gmail.com','contra18'),
+(19, 'Juan', 'Cano', 'juaca@gmail.com','contra19'),
+(20, 'Santiago', 'Hernandez', 'sanhe@gmail.com','contra20'),
+(21, 'Berta', 'Gomez', 'bertg@gmail.com','contra21'),
+(22, 'Miriam', 'Dominguez', 'mirdo@gmail.com','contra22'),
+(23, 'Antonio', 'Castro', 'antca@gmail.com','contra23'),
+(24, 'Hugo', 'Alonso', 'hugal@gmail.com','contra24'),
+(25, 'Victoria', 'Perez', 'vicpe@gmail.com','contra25'),
+(26, 'Jimena', 'Leon', 'jimle@gmail.com','contra26'),
+(27, 'Raquel ', 'Peña','raqpe@gmail.com','contra27');
 
-INSERT INTO reservaciones VALUES (1,101,5,'2020-07-12','2020-07-13','16:15','L1AQP'),
-(2,102,3,'2020-07-13','2020-07-15','10:30','L1AQP'),
-(3,104,2,'2020-07-10','2020-07-19','18:00','L1AQP');
+INSERT INTO reservaciones VALUES (1,1,5,'2020-07-12','2020-07-13','16:15','L1AQP'),
+(2,2,3,'2020-07-13','2020-07-15','10:30','L1AQP'),
+(3,4,2,'2020-07-10','2020-07-19','18:00','L1AQP');
 
 INSERT INTO consumo_cliente VALUES 
-(101,1,5),
-(101,5,5),
-(102,3,3),
-(102,4,3),
-(102,5,3),
-(104,3,2),
-(104,6,2);
+(1,1,5),
+(1,5,5),
+(2,3,3),
+(2,4,3),
+(2,5,3),
+(4,3,2),
+(4,6,2);
 
-INSERT INTO facturas VALUES (1,101,null,'2020-07-12','12:12:03',50.00),
-(2,102,null,'2020-07-13','15:17:13',51.00),
-(3,104,null,'2020-07-10','08:12:53',32.00);
+INSERT INTO facturas VALUES (1,1,null,'2020-07-12','12:12:03',50.00),
+(2,2,null,'2020-07-13','15:17:13',51.00),
+(3,4,null,'2020-07-10','08:12:53',32.00);
 
-INSERT INTO registro_cliente VALUES(101,1,1),
-(102,2,2),
-(104,3,3);
+INSERT INTO registro_cliente VALUES(1,1,1),
+(2,2,2),
+(4,3,3);
 
 
 ALTER TABLE reservaciones PARTITION BY RANGE(fecha_reservada)(

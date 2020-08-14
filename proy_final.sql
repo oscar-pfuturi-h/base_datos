@@ -86,10 +86,14 @@ CREATE TABLE clientes (
 	id_cliente integer PRIMARY KEY AUTO_INCREMENT,
 	nombre varchar(30) NOT NULL,
 	apellidos varchar(30),
-	correo varchar(40),
-	contrasenha varchar(40)
-)ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
-PARTITION BY RANGE(id_cliente)(
+	correo varchar(40) UNIQUE,
+	contrasenha varchar(40) UNIQUE
+)ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+
+/*PARTITION BY RANGE(id_cliente)(
 	PARTITION p_c1 VALUES less than (11),
   	PARTITION p_c2 VALUES less than (21),
  	PARTITION p_c3 VALUES less than (31),
@@ -98,14 +102,14 @@ PARTITION BY RANGE(id_cliente)(
 CREATE VIEW clientes_p1 AS SELECT * FROM clientes PARTITION (p_c1);
 CREATE VIEW clientes_p2 AS SELECT * FROM clientes PARTITION (p_c2);
 CREATE VIEW clientes_p3 AS SELECT * FROM clientes PARTITION (p_c3);
-CREATE VIEW clientes_p4 AS SELECT * FROM clientes PARTITION (p_c4);
+CREATE VIEW clientes_p4 AS SELECT * FROM clientes PARTITION (p_c4);*/
 
 
 CREATE TABLE reservaciones (
 	id_reserva integer PRIMARY KEY AUTO_INCREMENT,
 	id_cliente integer,
 	nro_clientes tinyint NOT NULL,
-	fecha_reservacion date,
+	fecha_reservacion date NOT NULL,
     fecha_reservada date NOT NULL,
 	hora time NOT NULL,
 	id_sucursal varchar(5) NOT NULL,
@@ -113,13 +117,16 @@ CREATE TABLE reservaciones (
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT reserva_fk2 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
-PARTITION BY RANGE COLUMNS(fecha_reservada)(
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+/*PARTITION BY RANGE COLUMNS(fecha_reservada)(
 	PARTITION p_fecha_r1 VALUES less than ('2020-04-01'),
   	PARTITION p_fecha_r2 VALUES less than ('2020-07-01'),
  	PARTITION p_fecha_r3 VALUES less than ('2020-10-01'),
   	PARTITION p_fecha_r4 VALUES less than ('2021-01-01'));
-/*CREATE VIEW pt1 AS SELECT * FROM tabla1 PARTITION (p1);
+CREATE VIEW pt1 AS SELECT * FROM tabla1 PARTITION (p1);
 CREATE VIEW pt2 AS SELECT * FROM tabla1 PARTITION (p2);*/
 
 
@@ -130,12 +137,16 @@ CREATE TABLE consumo_cliente (
 	PRIMARY KEY (id_cliente, id_prod),
 	CONSTRAINT consumo_cliente_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente),
 	CONSTRAINT consumo_cliente_fk2 FOREIGN key (id_prod) REFERENCES productos (id_prod)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin
-PARTITION BY RANGE(id_cliente)(
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+
+/*PARTITION BY RANGE(id_cliente)(
 	PARTITION p_cc1 VALUES less than (11),
   	PARTITION p_cc2 VALUES less than (21),
  	PARTITION p_cc3 VALUES less than (31),
-  	PARTITION p_cc4 VALUES less than (41));
+  	PARTITION p_cc4 VALUES less than (41));*/
 
 CREATE TABLE facturas (
 	id_factura integer PRIMARY KEY AUTO_INCREMENT,
@@ -150,12 +161,22 @@ CREATE TABLE facturas (
 	CONSTRAINT factura_fk2 FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
-PARTITION BY RANGE COLUMNS(fecha_emision)(
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+
+
+
+
+
+
+
+/*PARTITION BY RANGE COLUMNS(fecha_emision)(
 	PARTITION p_fecha_e1 VALUES less than ('2020-04-01'),
   	PARTITION p_fecha_e2 VALUES less than ('2020-07-01'),
  	PARTITION p_fecha_e3 VALUES less than ('2020-10-01'),
-  	PARTITION p_fecha_e4 VALUES less than ('2021-01-01'));
+  	PARTITION p_fecha_e4 VALUES less than ('2021-01-01'));*/
 
 CREATE TABLE registro_cliente (
 	id_cliente integer,
@@ -165,14 +186,12 @@ CREATE TABLE registro_cliente (
 	CONSTRAINT registro_cliente_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente),
     CONSTRAINT registro_cliente_fk2 FOREIGN KEY (id_reserva) REFERENCES reservaciones (id_reserva),
     CONSTRAINT registro_cliente_fk3 FOREIGN KEY (id_factura) REFERENCES facturas (id_factura)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin
-PARTITION BY RANGE(id_cliente)(
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*PARTITION BY RANGE(id_cliente)(
 	PARTITION p_rc1 VALUES less than (11),
   	PARTITION p_rc2 VALUES less than (21),
  	PARTITION p_rc3 VALUES less than (31),
-  	PARTITION p_rc4 VALUES less than (41));
-
-
+  	PARTITION p_rc4 VALUES less than (41));*/
 
 
 
@@ -276,59 +295,208 @@ INSERT INTO cajero VALUES
 (70399921,'anapr@gmail.com','pass5');
 
 INSERT INTO clientes VALUES 
-(1,'Kevin', 'Mamani Condori','kevmc@gmail.com','contra1'),
-(2,'Wilmer', 'Lopez Zegarra','willz@gmail.com','contra2'),
-(3,'Edwin', 'Choque Quispe','edwcq@gmail.com','contra3'),
-(4,'Diana', 'Medina Acosta','diama@gmail.com','contra4'),
-(5, 'Juan', 'De la torre', 'juadt@gmail.com','contra5'),
-(6, 'Antonio', 'Hernandez', 'anthe@gmail.com','contra6'),
-(7, 'Pedro', 'Juarez', 'pedju@gmail.com','contra7'),
-(8, 'Mireya', 'Perez', 'mirpe@gmail.com','contra8'),
-(9, 'Jose', 'Castillo','josca@gmail.com','contra9'),
-(10, 'Maria', 'Diaz', 'mardi@gmail.com','contra10'),
-(11, 'Clara', 'Duran', 'cladu@gmail.com','contra11'),
-(12, 'Joaquin', 'Muñoz', 'joamu@gmail', 'contra12'),
-(13, 'Julia', 'Lopez', 'jullo@gmail.com','contra13'),
-(14, 'Aina', 'Acosta','ainac@gmail.com','contra14'),
-(15, 'Carlota', 'Perez', 'carpe@gmail.com','contra15'),
-(16, 'Ana Maria', 'Igleias', 'anaig@gmail.com','contra16'),
-(17, 'Jaime', 'Jimenez', 'jaiji@gmail.com','contra17'),
-(18, 'Roberto ', 'Torres', 'robto@gmail.com','contra18'),
-(19, 'Juan', 'Cano', 'juaca@gmail.com','contra19'),
-(20, 'Santiago', 'Hernandez', 'sanhe@gmail.com','contra20'),
-(21, 'Berta', 'Gomez', 'bertg@gmail.com','contra21'),
-(22, 'Miriam', 'Dominguez', 'mirdo@gmail.com','contra22'),
-(23, 'Antonio', 'Castro', 'antca@gmail.com','contra23'),
-(24, 'Hugo', 'Alonso', 'hugal@gmail.com','contra24'),
-(25, 'Victoria', 'Perez', 'vicpe@gmail.com','contra25'),
-(26, 'Jimena', 'Leon', 'jimle@gmail.com','contra26'),
-(27, 'Raquel ', 'Peña','raqpe@gmail.com','contra27');
+(101,'Kevin', 'Mamani Condori','kevmc@gmail.com','contra1'),
+(102,'Wilmer', 'Lopez Zegarra','willz@gmail.com','contra2'),
+(103,'Edwin', 'Choque Quispe','edwcq@gmail.com','contra3'),
+(104,'Diana', 'Medina Acosta','diama@gmail.com','contra4'),
+(105, 'Juan', 'De la torre', 'juadt@gmail.com','contra5'),
+(106, 'Antonio', 'Hernandez', 'anthe@gmail.com','contra6'),
+(107, 'Pedro', 'Juarez', 'pedju@gmail.com','contra7'),
+(108, 'Mireya', 'Perez', 'mirpe@gmail.com','contra8'),
+(109, 'Jose', 'Castillo','josca@gmail.com','contra9'),
+(110, 'Maria', 'Diaz', 'mardi@gmail.com','contra10'),
+(111, 'Clara', 'Duran', 'cladu@gmail.com','contra11'),
+(112, 'Joaquin', 'Muñoz', 'joamu@gmail', 'contra12'),
+(113, 'Julia', 'Lopez', 'jullo@gmail.com','contra13'),
+(114, 'Aina', 'Acosta','ainac@gmail.com','contra14'),
+(115, 'Carlota', 'Perez', 'carpe@gmail.com','contra15'),
+(116, 'Ana Maria', 'Igleias', 'anaig@gmail.com','contra16'),
+(117, 'Jaime', 'Jimenez', 'jaiji@gmail.com','contra17'),
+(118, 'Roberto ', 'Torres', 'robto@gmail.com','contra18'),
+(119, 'Juan', 'Cano', 'juaca@gmail.com','contra19'),
+(120, 'Santiago', 'Hernandez', 'sanhe@gmail.com','contra20'),
+(121, 'Berta', 'Gomez', 'bertg@gmail.com','contra21'),
+(122, 'Miriam', 'Dominguez', 'mirdo@gmail.com','contra22'),
+(123, 'Antonio', 'Castro', 'antca@gmail.com','contra23'),
+(124, 'Hugo', 'Alonso', 'hugal@gmail.com','contra24'),
+(125, 'Victoria', 'Perez', 'vicpe@gmail.com','contra25'),
+(126, 'Jimena', 'Leon', 'jimle@gmail.com','contra26'),
+(127, 'Raquel ', 'Peña','raqpe@gmail.com','contra27');
 
-INSERT INTO reservaciones VALUES (1,1,5,'2020-07-12','2020-07-13','16:15','L1AQP'),
-(2,2,3,'2020-07-13','2020-07-15','10:30','L1AQP'),
-(3,4,2,'2020-07-10','2020-07-19','18:00','L1AQP');
+INSERT INTO reservaciones VALUES (1,101,5,'2020-07-12','2020-07-13','16:15','L1AQP'),
+(2,102,3,'2020-07-13','2020-07-15','10:30','L1AQP'),
+(3,104,2,'2020-07-10','2020-07-19','18:00','L1AQP');
 
 INSERT INTO consumo_cliente VALUES 
-(1,1,5),
-(1,5,5),
-(2,3,3),
-(2,4,3),
-(2,5,3),
-(4,3,2),
-(4,6,2);
+(101,1,5),
+(101,5,5),
+(102,3,3),
+(102,4,3),
+(102,5,3),
+(104,3,2),
+(104,6,2);
 
-INSERT INTO facturas VALUES (1,1,null,'2020-07-12','12:12:03',50.00),
-(2,2,null,'2020-07-13','15:17:13',51.00),
-(3,4,null,'2020-07-10','08:12:53',32.00);
+INSERT INTO facturas VALUES (1,101,null,'2020-07-12','12:12:03',50.00),
+(2,102,null,'2020-07-13','15:17:13',51.00),
+(3,104,null,'2020-07-10','08:12:53',32.00);
 
-INSERT INTO registro_cliente VALUES(1,1,1),
-(2,2,2),
-(4,3,3);
+INSERT INTO registro_cliente VALUES(101,1,1),
+(102,2,2),
+(104,3,3);
 
 
-ALTER TABLE reservaciones PARTITION BY RANGE(fecha_reservada)(
+/*ALTER TABLE reservaciones PARTITION BY RANGE(fecha_reservada)(
     PARTITION P1 ( fecha_reservada between 01-01-2020 to 31-03-2020),
     PARTITION P2 ( fecha_reservada between 01-04-2020 to 30-06-2020),
     PARTITION P3 ( fecha_reservada between 01-07-2020 to 30-09-2020),
     PARTITION P4 ( fecha_reservada between 01-10-2020 to 31-12-2020),
-);
+);*/
+
+
+
+
+CREATE TABLE reservaciones_01_04(
+	id_reserva integer PRIMARY KEY AUTO_INCREMENT,
+	id_cliente integer,
+	nro_clientes tinyint NOT NULL,
+	fecha_reservacion date NOT NULL,
+    fecha_reservada date NOT NULL,
+	hora time NOT NULL,
+	id_sucursal varchar(5) NOT NULL,
+	CONSTRAINT reserva1_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT reserva1_fk2 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE reservaciones_05_08(
+	id_reserva integer PRIMARY KEY AUTO_INCREMENT,
+	id_cliente integer,
+	nro_clientes tinyint NOT NULL,
+	fecha_reservacion date NOT NULL,
+    fecha_reservada date NOT NULL,
+	hora time NOT NULL,
+	id_sucursal varchar(5) NOT NULL,
+	CONSTRAINT reserva2_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT reserva2_fk2 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE reservaciones_09_12(
+	id_reserva integer PRIMARY KEY AUTO_INCREMENT,
+	id_cliente integer,
+	nro_clientes tinyint NOT NULL,
+	fecha_reservacion date NOT NULL,
+    fecha_reservada date NOT NULL,
+	hora time NOT NULL,
+	id_sucursal varchar(5) NOT NULL,
+	CONSTRAINT reserva3_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT reserva3_fk2 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE facturas_01_04(
+	id_factura integer PRIMARY KEY AUTO_INCREMENT,
+	id_cliente integer,
+	id_empleado integer,
+	fecha_emision date NOT NULL,
+    hora_emision time NOT NULL,
+    pago_total numeric(6,2) NOT NULL,
+	CONSTRAINT factura1_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT factura1_fk2 FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE facturas_05_08(
+	id_factura integer PRIMARY KEY AUTO_INCREMENT,
+	id_cliente integer,
+	id_empleado integer,
+	fecha_emision date NOT NULL,
+    hora_emision time NOT NULL,
+    pago_total numeric(6,2) NOT NULL,
+	CONSTRAINT factura2_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT factura2_fk2 FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE facturas_09_12(
+	id_factura integer PRIMARY KEY AUTO_INCREMENT,
+	id_cliente integer,
+	id_empleado integer,
+	fecha_emision date NOT NULL,
+    hora_emision time NOT NULL,
+    pago_total numeric(6,2) NOT NULL,
+	CONSTRAINT factura3_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT factura3_fk2 FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE consumo_cliente_01_04(
+	id_cliente integer,
+	id_prod tinyint,
+	cantidad tinyint NOT NULL,
+	PRIMARY KEY (id_cliente, id_prod),
+	CONSTRAINT consumo1_cliente_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente),
+	CONSTRAINT consumo1_cliente_fk2 FOREIGN key (id_prod) REFERENCES productos (id_prod)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE consumo_cliente_05_08 (
+	id_cliente integer,
+	id_prod tinyint,
+	cantidad tinyint NOT NULL,
+	PRIMARY KEY (id_cliente, id_prod),
+	CONSTRAINT consumo2_cliente_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente),
+	CONSTRAINT consumo2_cliente_fk2 FOREIGN key (id_prod) REFERENCES productos (id_prod)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE consumo_cliente_09_12 (
+	id_cliente integer,
+	id_prod tinyint,
+	cantidad tinyint NOT NULL,
+	PRIMARY KEY (id_cliente, id_prod),
+	CONSTRAINT consumo3_cliente_fk1 FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente),
+	CONSTRAINT consumo3_cliente_fk2 FOREIGN key (id_prod) REFERENCES productos (id_prod)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+DELIMITER //
+CREATE PROCEDURE insertar_sucursal(IN id_reserva integer,IN id_cliente integer,IN nro_clientes tinyint,
+						IN fecha_reservacion date,IN fecha_reservada date,IN hora time,IN id_sucursal varchar(5))
+BEGIN
+    IF MONTH(fecha_reservacion)<=4 THEN
+    	INSERT INTO reservaciones_01_04 VALUES (id_reserva,id_cliente,nro_clientes,fecha_reservacion,fecha_reservada,hora,id_sucursal);
+    ELSE IF MONTH(fecha_reservacion)>4 and MONTH(fecha_reservacion)<=8 THEN
+    	INSERT INTO reservaciones_05_08 VALUES (id_reserva,id_cliente,nro_clientes,fecha_reservacion,fecha_reservada,hora,id_sucursal);
+    ELSE
+    	INSERT INTO reservaciones_09_12 VALUES (id_reserva,id_cliente,nro_clientes,fecha_reservacion,fecha_reservada,hora,id_sucursal);
+    END IF;
+    END IF;
+END //
+
+DELIMITER //
+CREATE PROCEDURE insertar_facturas(IN id_factura integer, IN id_cliente integer,IN id_empleado integer,IN fecha_emision date,IN hora_emision time,IN pago_total numeric(6,2))
+BEGIN
+    IF MONTH(fecha_emision)<=4 THEN
+    	INSERT INTO facturas_01_04 VALUES (id_factura,id_cliente,id_empleado,fecha_emision,hora_emision,pago_total);
+    ELSE IF MONTH(fecha_emision)>4 and MONTH(fecha_emision)<=8 THEN
+    	INSERT INTO facturas_05_08 VALUES (id_factura,id_cliente,id_empleado,fecha_emision,hora_emision,pago_total);
+    ELSE
+    	INSERT INTO facturas_09_12 VALUES (id_factura,id_cliente,id_empleado,fecha_emision,hora_emision,pago_total);
+    END IF;
+    END IF;
+END //
+
